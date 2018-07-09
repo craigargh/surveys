@@ -3,6 +3,19 @@ import datetime
 import mongoengine
 
 
+class Survey(mongoengine.Document):
+    name = mongoengine.StringField()
+    available_places = mongoengine.IntField()
+    user = mongoengine.IntField()
+
+    responses = mongoengine.EmbeddedDocumentListField(SurveyResponse)
+
+    meta = {
+        'db_alias': 'main',
+        'collection': 'surveys',
+    }
+
+
 class SurveyResponse(mongoengine.EmbeddedDocument):
     survey = mongoengine.ObjectIdField()
     created_at = mongoengine.DateTimeField(default=datetime.datetime.now)
