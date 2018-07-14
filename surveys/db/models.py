@@ -16,7 +16,7 @@ class SurveyResponse(mongoengine.EmbeddedDocument):
 
 class Survey(mongoengine.Document):
     name = mongoengine.StringField()
-    available_places = mongoengine.IntField()
+    available_places = mongoengine.IntField(required=True)
     user = mongoengine.IntField()
 
     responses = mongoengine.EmbeddedDocumentListField(SurveyResponse)

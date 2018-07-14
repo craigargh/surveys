@@ -35,7 +35,10 @@ def create_survey_response():
     survey_id = request_data.get('survey')
     user_id = request_data.get('user')
 
-    survey_response.create(survey_id, user_id)
+    try:
+        survey_response.create(survey_id, user_id)
+    except ValueError as survey_response_error:
+        return str(survey_response_error), 400
 
     return 'Success', 200
 
