@@ -3,19 +3,19 @@ from flask import Flask, request
 from surveys import survey, survey_response
 from surveys.db import mongo_connection
 
-app = Flask(__name__)
+application = Flask(__name__)
 
 mongo_connection.startup()
 
 
-@app.route('/surveys', methods=['GET'], strict_slashes=False)
+@application.route('/surveys', methods=['GET'], strict_slashes=False)
 def surveys():
     all_surveys = survey.list_surveys()
 
     return all_surveys.to_json()
 
 
-@app.route('/surveys', methods=['POST'], strict_slashes=False)
+@application.route('/surveys', methods=['POST'], strict_slashes=False)
 def create_survey():
     request_data = request.form
 
@@ -28,7 +28,7 @@ def create_survey():
     return 'Success', 200
 
 
-@app.route('/survey_responses', methods=['POST'], strict_slashes=False)
+@application.route('/survey_responses', methods=['POST'], strict_slashes=False)
 def create_survey_response():
     request_data = request.form
 
@@ -43,4 +43,5 @@ def create_survey_response():
     return 'Success', 200
 
 
-app.run()
+if __name__ == '__main__':
+    application.run()
