@@ -37,6 +37,7 @@ def create_survey_response():
 
     try:
         survey_response.create(survey_id, user_id)
+
     except ValueError as survey_response_error:
         return str(survey_response_error), 400
 
