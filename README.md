@@ -24,6 +24,8 @@ I did not include a user document. In a production system this would be essentia
 
 The hostname of the `mongodb` database is hardcoded in the `surveys/db/mongo_connection.py` file. This is OK when working with a single environment, however when working with multiple environments it should be replaced with an environment variable or a `settings.py` file.
 
+I did not implement the ability to get surveys by user ID. I also did not implement a way to retrieve survey responses by survey. This was due to spending more time on the Kubernetes part of the task than I expected.
+
 ## Kubernetes
 
 The Kubernetes configuration creates a pod and service for both the database and the API. The pods contain the running components of the application. The services allow other pods to interact with the pod by providing a constant host name. The service for the API enables it to be accessed from outside the cluster. 
